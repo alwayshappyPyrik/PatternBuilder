@@ -29,7 +29,9 @@ public class PersonBuilder {
     }
 
     public PersonBuilder setAge(OptionalInt age) {
-        if (age.getAsInt() < 0) {
+        if (age.isEmpty()) {
+            age = OptionalInt.empty();
+        } else if (age.getAsInt() < 0) {
             throw new IllegalStateException("Недопустимый возраст");
         }
         this.age = age;

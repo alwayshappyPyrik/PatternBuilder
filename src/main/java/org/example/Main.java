@@ -7,8 +7,8 @@ public class Main {
         Person mom = new PersonBuilder()
                 .setFirstName("Марина")
                 .setLastName("Пырикова")
-                .setAge(OptionalInt.of(30))
-                .setAddress("Москва")
+                .setAge(OptionalInt.empty())
+                .setAddress("")
                 .build();
         System.out.println(mom);
 

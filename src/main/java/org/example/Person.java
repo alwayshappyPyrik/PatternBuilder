@@ -27,7 +27,7 @@ public class Person {
         OptionalInt oldAge = person.getAge();
         if (hasAge(age)) {
             int newAge = age.getAsInt();
-            if (oldAge.getAsInt() + 1 == newAge) {
+            if (age.isPresent() && oldAge.isPresent() && oldAge.getAsInt() + 1 == newAge) {
                 happyBirthday();
             } else {
                 throw new IllegalAccessException("Вы хотите указать недопустимый возраст");
@@ -61,7 +61,7 @@ public class Person {
 
     PersonBuilder newChildBuilder() {
         OptionalInt sonAge = OptionalInt.empty();
-        if (age != null) {
+        if (age.isPresent() && !age.isEmpty()) {
             sonAge = OptionalInt.of(age.getAsInt() - 25);
             return new PersonBuilder(lastName, sonAge, address);
         } else {
@@ -79,7 +79,7 @@ public class Person {
         } else {
             ageToPrint = "Возраст неизвестен";
         }
-        if (person.hasAddress(address)) {
+        if (person.hasAddress(address) && person.getAddress() == null) {
             addressToPrint = person.getAddress();
         } else {
             addressToPrint = "Адрес неизвестен";
